@@ -12,6 +12,10 @@ function get(type, index) {
 	return new Promise((resolve, reject) => {
 		var request = api(baseUrl + type + '/' + index)
 
+		request.set({
+			Accept: 'application/vnd.anapioficeandfire+json; version=1'
+		})
+
 		if (cache[type][index]) {
 			request.set({'If-None-Match': cache[type][index].etag})
 		}
